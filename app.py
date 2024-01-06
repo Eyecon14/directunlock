@@ -19,11 +19,7 @@ conn.close()
 
 @app.route('/')
 def home():
-    return render_template('login.html')
-
-@app.route('/signup')
-def signup_page():
-    return render_template('signup.html')
+    return render_template('index.html')
 
 @app.route('/signup', methods=['POST'])
 def signup():
@@ -31,7 +27,7 @@ def signup():
     password = request.form['password']
 
     # Making the password hash# before storing
-    hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+    hashed_password = generate_password_hash(password, method='sha256')
 
     conn = sqlite3.connect('users.db')
     cursor = conn.cursor()
@@ -39,11 +35,7 @@ def signup():
     conn.commit()
     conn.close()
 
-    return redirect(url_for('login_page'))
-
-@app.route('/login')
-def login_page():
-    return render_template('login.html')
+    return redirect(url_for('home'))
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -53,7 +45,7 @@ def login():
     conn = sqlite3.connect('users.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM users WHERE username=?', (username,))
-    user = cursor.fetchone()
+    user = cursor.fetchtone()
     conn.close()
 
     if user and check_password_hash(user[2], password):
