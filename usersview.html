@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Users</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #333;
+        }
+        #search {
+            margin: 20px;
+            padding: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .table-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px 0;
+            overflow-x: auto;
+            overflow-y: auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .actions .edit {
+            background-color: #ffa500;
+            color: white;
+        }
+        .actions .delete {
+            background-color: #ff0000;
+            color: white;
+        }
+        .actions .save {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .pagination {
+            margin: 20px 0;
+        }
+        .pagination button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .pagination button.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        #exportButton, #addUserButton {
+            margin: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #addUserForm {
+            display: none;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+        #addUserForm input {
+            padding: 10px;
+            margin: 5px 0;
+            width: 90%;
+            max-width: 500px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        #addUserForm button {
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .table-container {
+                width: 100%;
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            th, td {
+                box-sizing: border-box;
+                width: 100%;
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+            }
+            th {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            tr {
+                margin: 0 0 20px 0;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+            td:before {
+                position: absolute;
+                top: 50%;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                transform: translateY(-50%);
+                font-weight: bold;
+                text-align: left;
+                content: attr(data-label);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Registered Users</h2>
+    <input type="text" id="search" placeholder="Search for users...">
+    
+    <form id="addUserForm">
+        <input type="text" id="newUsername" placeholder="Username" required>
+        <input type="email" id="newEmail" placeholder="Email" required>
+    </form>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Username</th>
+                    <th onclick="sortTable(1)">Email</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                <!-- Data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination" id="pagination"></div>
+    <button id="exportButton">Export to CSV</button>
+
+    <script type="module">
+        // JavaScript code remains mostly the same, focusing on maintaining functionalities you want
+    </script>
+</body>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
+    import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAJE5CaaFJDlEt4_snZQR8pbpgh7JTcBaw",
+        authDomain: "creativetutorial-e5d5e.firebaseapp.com",
+        projectId: "creativetutorial-e5d5e",
+        storageBucket: "creativetutorial-e5d5e.appspot.com",
+        messagingSenderId: "786862672314",
+        appId: "1:786862672314:web:c21463b2c5a2ac37eb3583"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    let usersData = [];
+    let currentPage = 1;
+    const rowsPerPage = 5;
+
+    // Function to fetch and display users
+    function fetchUsers() {
+        const usersRef = ref(db, 'users');
+        get(usersRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                usersData = Object.entries(snapshot.val());
+                displayUsers(usersData);
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error("Error getting users: ", error);
+        });
+    }
+
+    function displayUsers(users) {
+        const tbody = document.getElementById("userTableBody");
+        tbody.innerHTML = ""; // Clear the table body
+
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+        const paginatedUsers = users.slice(start, end);
+
+        paginatedUsers.forEach(([key, user]) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td data-label="Username">${user.username}</td>
+                <td data-label="Email">${user.email}</td>
+
+            `;
+            tbody.appendChild(tr);
+        });
+
+        setupPagination(users.length);
+    }
+
+    function setupPagination(totalRows) {
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+        const paginationDiv = document.getElementById("pagination");
+        paginationDiv.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement("button");
+            button.textContent = i;
+            button.onclick = () => goToPage(i);
+            if (i === currentPage) {
+                button.classList.add("disabled");
+            }
+            paginationDiv.appendChild(button);
+        }
+    }
+
+    function goToPage(page) {
+        currentPage = page;
+        displayUsers(usersData);
+    }
+
+    function sortTable(columnIndex) {
+        const sortedUsers = [...usersData].sort((a, b) => {
+            const key = columnIndex === 0 ? 'username' : 'email';
+            return a[1][key].localeCompare(b[1][key]);
+        });
+        displayUsers(sortedUsers);
+    }
+
+    document.getElementById("search").addEventListener("input", function(e) {
+        const query = e.target.value.toLowerCase();
+        const filteredUsers = usersData.filter(([key, user]) => 
+            user.username.toLowerCase().includes(query) ||
+            user.email.toLowerCase().includes(query)
+        );
+        displayUsers(filteredUsers);
+    });
+
+    document.getElementById("exportButton").addEventListener("click", function() {
+        let csvContent = "data:text/csv;charset=utf-8,";
+        csvContent += "Username,Email\n";
+        usersData.forEach(([key, user]) => {
+            csvContent += `${user.username},${user.email}\n`;
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "registered_users.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+
+    // Fetch users when the page loads
+    window.onload = fetchUsers;
+</script>

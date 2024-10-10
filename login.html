@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeleTech Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+          display: flex;
+          height: 100vh;
+          text-align: center;
+          align-items: center;
+          justify-content: center;
+          background: #151515;
+      }
+
+      /* Login Form */
+      .box {
+          width: 100%;
+          max-width: 410px;
+          margin: auto;
+      }
+
+      .form {
+          background: #1b1b1b;
+          padding: 40px 35px 60px;
+          border: 1px solid black;
+          border-radius: 5px;
+          box-shadow: inset 0 0 1px #272727;
+      }
+
+      .form h2 {
+          font-size: 30px;
+          color: #c7c7c7;
+          font-weight: 600;
+          letter-spacing: 2px;
+          margin-bottom: 20px;
+      }
+
+      form {
+          margin-top: 40px;
+      }
+
+      .inputbox {
+          position: relative;
+          margin-bottom: 20px;
+      }
+
+      .inputbox input {
+          height: 50px;
+          width: calc(100% - 30px);
+          outline: none;
+          font-size: 19px;
+          color: #868686;
+          padding: 0 15px;
+          border: 1px solid #444;
+          border-radius: 5px;
+          background: linear-gradient(#333, #222);
+          caret-color: #339933;
+          transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .inputbox input:focus {
+          color: #339933;
+          box-shadow: 0 0 5px rgba(0, 255, 0, .2), inset 0 0 5px rgba(0, 255, 0, .1);
+          background: linear-gradient(#333933, #222922);
+          animation: glow .8s ease-out infinite alternate;
+      }
+
+      @keyframes glow {
+          0% {
+              border-color: #339933;
+              box-shadow: 0 0 5px rgba(0, 255, 0, .2), inset 0 0 5px rgba(0, 0, 0, .1);
+          }
+          100% {
+              border-color: #6f6;
+              box-shadow: 0 0 20px rgba(0, 255, 0, .6), inset 0 0 10px rgba(0, 255, 0, .4);
+          }
+      }
+
+      .inputbox span {
+          position: absolute;
+          top: 10px;
+          left: 20px;
+          color: #999;
+          font-size: 16px;
+          pointer-events: none;
+          transition: 0.3s ease all;
+      }
+
+      .inputbox input:focus + span,
+      .inputbox input:valid + span {
+          top: -20px;
+          color: #339933;
+          font-size: 12px;
+      }
+
+      .inputbox button {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translateY(-50%);
+          border: none;
+          background-color: transparent;
+          cursor: pointer;
+          font-size: 14px;
+      }
+
+      .sub {
+          height: 50px;
+          width: 190px;
+          outline: none;
+          font-size: 19px;
+          color: #868686;
+          padding: 0 15px;
+          border-radius: 5px;
+          border: 1px solid #444;
+          background: linear-gradient(#333, #222);
+          caret-color: #339933;
+          cursor: pointer;
+          transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .sub:hover {
+          color: #339933;
+          border: 1px solid #339933;
+          box-shadow: 0 0 5px rgba(0, 255, 0, .3), 0 0 10px rgba(0, 255, 0, .2), 0 0 15px rgba(0, 255, 0, .1), 0 2px 0 black;
+      }
+
+      .link {
+          margin-top: 25px;
+          color: #868686;
+      }
+
+      .link a {
+          color: #339933;
+          text-decoration: none;
+      }
+
+      .link a:hover {
+          text-decoration: underline;
+      }
+
+      /* Modal Styles */
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      .modal-content {
+          background-color: #1b1b1b;
+          margin: 15% auto;
+          padding: 20px;
+          border: 1px solid #444;
+          width: 80%;
+          max-width: 400px;
+          text-align: center;
+          border-radius: 5px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .modal-content h2 {
+          margin: 0 0 15px;
+          color: #c7c7c7;
+      }
+
+      .modal-content p {
+          margin: 10px 0;
+          color: #868686;
+      }
+
+      .modal-content button {
+          background-color: #339933;
+          color: #ffffff;
+          border: none;
+          padding: 10px 20px;
+          cursor: pointer;
+          border-radius: 5px;
+          font-size: 16px;
+          transition: background-color 0.3s ease;
+      }
+
+      .modal-content button:hover {
+          background-color: #2a8c29;
+      }
+
+      .not-yet {
+        color: #fff;
+        padding: 10px;
+      }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="form">
+            <h2>Login Form</h2>
+            <form id="loginForm">
+                <div class="inputbox">
+                    <input type="text" id="username" required>
+                    <span>👤 Username</span>
+                </div>
+                <div class="inputbox">
+                    <input type="email" id="email" required>
+                    <span>📧 E-mail</span>
+                </div>
+                <div class="inputbox">
+                    <input type="password" id="phone" required>
+                    <span>🔒 Password</span>
+                    <button type="button" id="togglePhoneVisibility"></button>
+                </div>
+                <input type="submit" value="LOGIN" class="sub" id="submit">
+
+                <div class="not-yet">
+                  Do not have an account yet? <a href="process.html">Sign-up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- The Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>Success! 🎉</h2>
+            <p>*You have successfully login!*</p>
+            <button id="modalButton">OK 👍</button>
+        </div>
+    </div>
+
+        <!-- The Modal -->
+        <div id="errorModal" class="modal">
+            <div class="modal-content">
+                <h2>Wrong Credentials</h2>
+                <p>Please try again or sign up.</p>
+                <button id="tryAgainButton">Try Again</button>
+                <button id="signupButton">Sign up</button>
+                <p>Contact TeleTech Hub now! <a href="https://t.me/teletech_hub?start=Hello!%20Please%20I%20can't%20log-into%20my%20account">⚡Click Here!</a>.</p>
+            </div>
+        </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js";
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyAJE5CaaFJDlEt4_snZQR8pbpgh7JTcBaw",
+            authDomain: "creativetutorial-e5d5e.firebaseapp.com",
+            projectId: "creativetutorial-e5d5e",
+            storageBucket: "creativetutorial-e5d5e.appspot.com",
+            messagingSenderId: "786862672314",
+            appId: "1:786862672314:web:c21463b2c5a2ac37eb3583"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+    
+        // Get a reference to the database service
+        const db = getDatabase(app);
+    
+        // Toggle button for phone number visibility
+        const phoneInput = document.getElementById('phone');
+        const toggleButton = document.getElementById('togglePhoneVisibility');
+    
+        toggleButton.addEventListener('click', function() {
+            const type = phoneInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            phoneInput.setAttribute('type', type);
+            toggleButton.textContent = type === 'password' ? 'View' : 'Hide';
+        });
+    
+        document.getElementById("loginForm").addEventListener('submit', function(e){
+            e.preventDefault();
+    
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+    
+            // Retrieve data from Firebase for comparison
+            const usersRef = ref(db, 'users/');
+            get(usersRef).then((snapshot) => {
+                let authenticated = false;
+                snapshot.forEach((childSnapshot) => {
+                    const user = childSnapshot.val();
+                    if (user.username === username && user.email === email && user.phoneNumber === phone) {
+                        authenticated = true;
+                    }
+                });
+    
+                if (authenticated) {
+                    // Show modal dialog
+                    const modal = document.getElementById("successModal");
+                    modal.style.display = "block";
+                    
+                    // Handle button click to redirect to login page
+                    document.getElementById("modalButton").onclick = function() {
+                        window.location.href = "welcome.html";
+                    }
+                } else {
+                // Show error modal
+                const errorModal = document.getElementById("errorModal");
+                errorModal.style.display = "block";
+                        }
+                    }).catch((error) => {
+                        console.error("Error retrieving data: ", error);
+                    });
+                });
+
+                // Close error modal and handle options
+                document.getElementById("tryAgainButton").addEventListener('click', function() {
+                    const errorModal = document.getElementById("errorModal");
+                    errorModal.style.display = "none";
+                });
+
+                document.getElementById("signupButton").addEventListener('click', function() {
+                    window.location.href = "process.html"; // Redirect to sign up page
+                });
+    </script>
+    

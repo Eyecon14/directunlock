@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Chatbot Icon */
+        .chatbot-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .chatbot-icon:hover {
+            background-color: #0056b3;
+        }
+
+        /* Chatbot Container */
+        .chatbot-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            max-height: 500px;
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: fadeIn 0.4s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Chat Header */
+        .chatbot-header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .chatbot-header span {
+            cursor: pointer;
+        }
+
+        /* Chat Messages */
+        .chatbot-messages {
+            padding: 1rem;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .chatbot-message {
+            margin-bottom: 1rem;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            animation: slideUp 0.3s;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .chatbot-message.user {
+            background-color: #007bff;
+            color: white;
+            text-align: right;
+        }
+
+        .chatbot-message.ai {
+            background-color: #e9ecef;
+        }
+
+        .chatbot-message .icon {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .chatbot-message .text {
+            max-width: 250px;
+            word-wrap: break-word;
+        }
+
+        /* Custom Questions */
+        .custom-questions {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-top: 1px solid #ccc;
+        }
+
+        .custom-question {
+            padding: 8px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-question:hover {
+            background-color: #0056b3;
+        }
+
+        /* Typing Animation */
+        .typing {
+            display: flex;
+            align-items: center;
+        }
+
+        .typing span {
+            background-color: #007bff;
+            border-radius: 50%;
+            width: 8px;
+            height: 8px;
+            margin-right: 5px;
+            animation: bounce 0.5s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-5px);
+            }
+        }
+
+        .typing span:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .typing span:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Chatbot Icon -->
+    <div class="chatbot-icon" id="chatbot-icon">💬</div>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container" id="chatbot-container">
+        <div class="chatbot-header">
+            <div>TeleTech Bot</div>
+            <span id="close-chatbot">✖</span>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <!-- Bot Welcome Message -->
+            <div class="chatbot-message ai">
+                <i class="icon fas fa-headset"></i>
+                <div class="text">
+                    <p>Hello! How can I assist you today?</p>
+                </div>
+            </div>
+        </div>
+        <!-- Custom Questions -->
+        <div class="custom-questions">
+            <div class="custom-question" data-reply="Tell me about your services.">Services</div>
+            <div class="custom-question" data-reply="What payment methods do you accept?">Payment</div>
+            <div class="custom-question" data-reply="How do I become a reseller?">Reseller Info</div>
+        </div>
+    </div>
+
+    <script>
+        // Chatbot functionality
+        const chatbotIcon = document.getElementById('chatbot-icon');
+        const chatbotContainer = document.getElementById('chatbot-container');
+        const closeChatbot = document.getElementById('close-chatbot');
+        const messagesContainer = document.getElementById('chatbot-messages');
+        const customQuestions = document.querySelectorAll('.custom-question');
+
+        // Open chatbot when icon is clicked
+        chatbotIcon.addEventListener('click', () => {
+            chatbotContainer.style.display = 'flex';
+        });
+
+        // Close chatbot
+        closeChatbot.addEventListener('click', () => {
+            chatbotContainer.style.display = 'none';
+        });
+
+        // Function to display user and bot messages
+        function appendMessage(text, sender = 'bot') {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('chatbot-message');
+            if (sender === 'user') {
+                messageDiv.classList.add('user');
+                messageDiv.innerHTML = `<i class="icon fas fa-user"></i><div class="text"><p>${text}</p></div>`;
+            } else {
+                messageDiv.classList.add('ai');
+                messageDiv.innerHTML = `<i class="icon fas fa-robot"></i><div class="text"><p>${text}</p></div>`;
+            }
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Simulate bot typing
+        function showTyping() {
+            const typingDiv = document.createElement('div');
+            typingDiv.classList.add('chatbot-message', 'typing');
+            typingDiv.innerHTML = `<span></span><span></span><span></span>`;
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            return typingDiv;
+        }
+
+        // Handle custom question clicks
+        customQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const userMessage = question.getAttribute('data-reply');
+                appendMessage(userMessage, 'user');
+
+                // Show typing animation
+                const typingIndicator = showTyping();
+
+                // Simulate bot response after 1 second
+                setTimeout(() => {
+                    typingIndicator.remove();
+                    generateBotResponse(userMessage);
+                }, 1000);
+            });
+        });
+
+        // Generate bot response based on user input
+        function generateBotResponse(userMessage) {
+            let botResponse = '';
+
+            switch (userMessage) {
+                case 'Tell me about your services.':
+                    botResponse = 'We offer iCloud unlock, network unlock services, IMEI checking, and more!';
+                    break;
+                case 'What payment methods do you accept?':
+                    botResponse = 'We accept Binance, USDT TRC20, Bitcoin, Skrill, and more.';
+                    break;
+                case 'How do I become a reseller?':
+                    botResponse = 'To become a reseller, a $400 minimum deposit is required. Contact us for more details.';
+                    break;
+                default:
+                    botResponse = 'I’m sorry, I didn’t understand that. Can you please try again?';
+            }
+
+            appendMessage(botResponse, 'ai');
+        }
+    </script>
+</body>
+</html>

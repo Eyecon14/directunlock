@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Registration</title>
+    <style>
+/* Base Styles for the Form */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.box {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px 40px;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
+    font-weight: 600;
+}
+
+.section-title {
+    font-size: 16px;
+    margin: 20px 0;
+    color: #007bff;
+    text-align: center;
+}
+
+.inputbox {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.inputbox input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    background: transparent;
+    color: #333;
+}
+
+.inputbox span {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: #999;
+}
+
+.inputbox input:focus + span,
+.inputbox input:valid + span {
+    top: -5px;
+    left: 10px;
+    color: #007bff;
+    font-size: 12px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.checkbox-container label {
+    font-size: 14px;
+    color: #333;
+}
+
+.select-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.select-group select {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Buttons */
+.sub, .btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.sub:hover, .btn:hover {
+    background-color: #0056b3;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.navigation-buttons .btn {
+    width: 48%;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h2 {
+    color: #28a745;
+}
+
+.modal-content p {
+    margin: 15px 0;
+}
+
+.modal-content button {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <!-- Phase 1: Account Information -->
+        <div class="form phase-1">
+            <h2>REGISTRATION</h2>
+            <p class="section-title">ACCOUNT INFORMATION</p>
+            <form id="accountForm">
+                <div class="inputbox">
+                    <input type="email" id="email" required>
+                    <span>E-mail</span>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="newsletter">
+                    <label for="newsletter">Keep me up to date on news and exclusive offers</label>
+                </div>
+                <div class="inputbox">
+                    <input type="password" id="password" required>
+                    <span>Password</span>
+                </div>
+                <div class="inputbox">
+                    <input type="password" id="confirmPassword" required>
+                    <span>Confirm Password</span>
+                </div>
+                <div class="select-group">
+                    <select id="language" required>
+                        <option value="English">English</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="French">French</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <select id="currency" required>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <button type="button" class="sub" id="nextToBilling">NEXT</button>
+            </form>
+        </div>
+
+        <!-- Phase 2: Billing Information -->
+        <div class="form phase-2" style="display: none;">
+            <h2>REGISTRATION</h2>
+            <p class="section-title">BILLING INFORMATION</p>
+            <form id="billingForm">
+                <div class="inputbox">
+                    <input type="text" id="firstName" required>
+                    <span>First Name</span>
+                </div>
+                <div class="inputbox">
+                    <input type="text" id="lastName" required>
+                    <span>Last Name</span>
+                </div>
+                <div class="inputbox">
+                    <input type="text" id="address1" required>
+                    <span>Address 1</span>
+                </div>
+                <div class="inputbox">
+                    <input type="text" id="address2">
+                    <span>Address 2</span>
+                </div>
+                <div class="inputbox">
+                    <input type="text" id="country" required>
+                    <span>Country</span>
+                </div>
+                <div class="inputbox">
+                    <input type="text" id="state" required>
+                    <span>State</span>
+                </div>
+                <div class="inputbox">
+                    <input type="text" id="city" required>
+                    <span>City</span>
+                </div>
+                <div class="inputbox">
+                    <input type="text" id="zipcode" required>
+                    <span>Zip Code/Post Code</span>
+                </div>
+                <div class="navigation-buttons">
+                    <button type="button" class="btn" id="backToAccount">Previous</button>
+                    <button type="button" class="btn" id="nextToFinalization">Next</button>
+                </div>
+            </form>
+        </div>
+
+    <script>
+        document.getElementById('nextToFinalization').addEventListener('click', function() {
+            // Redirect to the desired HTML file
+            window.location.href = 'signup.html'; 
+        });
+
+        document.getElementById('nextToBilling').addEventListener('click', function() {
+            document.querySelector('.phase-1').style.display = 'none';
+            document.querySelector('.phase-2').style.display = 'block';
+        });
+
+        document.getElementById('backToAccount').addEventListener('click', function() {
+            document.querySelector('.phase-2').style.display = 'none';
+            document.querySelector('.phase-1').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

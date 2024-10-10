@@ -1,0 +1,934 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #0D1117;
+    color: #eaeaea;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: auto;
+    padding: 5px;
+}
+
+.div1, .div2, .div3, .div4, .div5, .div6, .div7 {
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #1f2937;
+    background-color: #030e2c;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: calc(33.33% - 20px);
+    height: 200px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.div1, .div2, .div3, .div4, .div5, .div6, .div7 h2 {
+    color: #eaeaea;
+}
+
+.div1, .div2, .div3, .div4, .div5, .div6, .div7 p {
+    margin: 0;
+    font-size: 15px;
+    color: #eaeaea;
+}
+
+@media screen and (min-width: 992px) {
+    .container {
+        display: block;
+    }
+
+    .div1, .div2, .div3 {
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 20px;
+    }
+
+    .div1, .div2 {
+        width: calc(33.33% - 20px);
+    }
+
+    .div3 {
+        overflow-y: auto;
+        margin-right: 0;
+    }
+
+    .div4 {
+        clear: both;
+        width: calc(100% - 20px);
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .div4 .left, .div4 .right {
+        width: calc(48% - 10px);
+        padding: 15px;
+        border: 1px solid #1f2937;
+        border-radius: 8px;
+        background-color: #1e3a8a;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .div5, .div6, .div7 {
+        width: calc(33.33% - 20px);
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 20px;
+        margin-right: 20px;
+        border: 1px solid #1f2937;
+        border-radius: 8px;
+        background-color: #030e2c;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .div5 {
+        margin-right: 20px;
+    }
+
+    .div7 {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .container {
+        padding: 0px;
+    }
+
+    .div1, .div2, .div3, .div4, .div5, .div6, .div7 {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .div4 {
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
+}
+
+section {
+    padding: 20px;
+}
+
+.client {
+    background-color: #020613;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.client h2 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #eaeaea;
+}
+
+.auth-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.auth-info p {
+    margin: 0;
+    font-size: 1em;
+    color: #eaeaea;
+    flex: 1;
+}
+
+.enable {
+    margin-left: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #1e40af;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #1e3a8a;
+}
+
+ 
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #010005;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 15px;
+            font-size: 10px;
+        }
+
+        .contact-info a {
+            color: #a38787;
+            text-decoration: none;
+            font-size: 13px;
+            padding: 8px;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .country-selector {
+            position: relative;
+        }
+
+        .country-btn {
+            border: none;
+            background: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .desktop-menu {
+            display: flex;
+            align-items: center; /* Center items vertically */
+            justify-content: space-between; /* Space out items */
+            padding: 10px; /* Adjust padding as needed */
+            background-color: #69bdaf; /* Background color for visibility */
+            color: #fff;
+        }
+
+        .desktop-menu a {
+            display: block;
+            padding: 14px 20px;
+            text-decoration: none;
+            color: #fff;
+        }
+        
+        .desktop-menu a:hover {
+            background-color: #575757;
+        }
+
+        .phone-menu {
+            display: flex;
+            align-items: center; /* Center items vertically */
+            justify-content: space-between; /* Space out items */
+            padding: 10px; /* Adjust padding as needed */
+            background-color: #05040e; /* Background color for visibility */
+        }
+        
+        .menu-icon {
+            font-size: 24px; /* Adjust size as needed */
+            background: #03103a;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .phone-logo {
+            flex: 1; /* Allows the logo to be centered */
+            display: flex;
+            justify-content: center; /* Center the logo horizontally */
+        }
+        
+        .phone-logo img {
+            max-width: 100%; /* Ensure logo is responsive */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        
+        .menu-item {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .menu-item a {
+            display: block;
+            padding: 14px 20px;
+            color: rgb(7, 4, 41);
+            text-decoration: none;
+        }
+        
+        .menu-item a:hover {
+            background-color: #575757;
+        }
+        
+        .arrow {
+            margin-left: 5px;
+        }
+        
+        .dropdown-menu1 {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            z-index: 1;
+            left: 0;
+            top: 100%;
+        }
+        
+        .dropdown-menu1 li {
+            border-bottom: 1px solid #575757;
+        }
+        
+        .dropdown-menu1 li a {
+            padding: 12px 16px;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .dropdown-menu1 li a:hover {
+            background-color: #575757;
+        }
+        
+        .dropdown-toggle::after {
+            content: "\25BC"; /* Unicode character for downward arrow */
+            margin-left: 5px;
+        }
+
+        .dropdown-menu1.show {
+            display: block;
+        }
+        
+        /* Ensure the dropdown menu is hidden by default */
+.dropdown-menu2 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+}
+
+/* Show the dropdown menu when hovering over the menu item */
+.menu-item:hover .dropdown-menu2 {
+    display: block;
+}
+
+/* Style for the dropdown menu items */
+.dropdown-menu2 li {
+    list-style-type: none;
+    padding: 8px 16px;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.dropdown-menu2 li a {
+    text-decoration: none;
+    display: block;
+    color: black;
+}
+
+/* Optional: Different styles for each dropdown item */
+.imei-order a {
+    color: #1a73e8; /* Blue for IMEI Orders */
+}
+
+.server-order a {
+    color: #34a853; /* Green for Server Orders */
+}
+
+.retail-order a {
+    color: #fbbc05; /* Yellow for Retail Orders */
+}
+
+.advanced-history a {
+    color: #ea4335; /* Red for Advanced History */
+}
+
+/* Ensure the dropdown stays visible when hovering over the dropdown itself */
+.menu-item:hover .dropdown-menu2,
+.dropdown-menu2:hover {
+    display: block;
+}
+
+
+        
+        .dropdown-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 300px; /* Adjust width as needed */
+            background-color: #060425;
+            border-right: 1px solid #ddd;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .menu-container a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: #27b6bb; /* Ensure text color is visible */
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .menu-container a:hover {
+            background-color: #e7e7e7;
+        }
+
+        .menu-top {
+            background: #81a5cc;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .menu-top a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        .menu-top a:hover {
+            text-decoration: underline;
+        }
+
+        .back-arrow {
+            margin-right: 10px;
+            font-size: 24px; /* Adjust size as needed */
+            color: #fff;
+        }
+
+
+        /* Individual text divs */
+.text-box {
+    flex: 1 1 calc(33% - 40px); /* Responsive width: 3 items per row with space */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding inside the div */
+    background-color: #fff; /* White background for the div */
+    background-size: cover; /* Ensure the image covers the entire div */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    text-align: center; /* Center text horizontally */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    opacity: 0; /* Start hidden */
+    transform: translateY(20px); /* Start slightly below */
+}
+
+/* Hover effect */
+.text-box:hover {
+    transform: translateY(-5px); /* Lift the div on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+}
+
+.text-arena {
+    padding: 10px;
+}
+
+/* Text styling */
+.text-box h3 {
+    font-size: 24px; /* Medium sized font for headings */
+    margin-bottom: 10px; /* Space below the heading */
+    color: #801772; /* Dark text color */
+}
+
+.text-box p {
+    font-size: 26px; /* Medium font size for paragraph text */
+    color: #666; /* Lighter text color */
+    line-height: 1.5; /* Line height for readability */
+}
+
+/* Animation for fade-in effect */
+.text-box.fade-in {
+    opacity: 1; /* Make div visible */
+    transform: translateY(0); /* Move to original position */
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 300px; /* Adjust as needed */
+    text-align: center;
+    position: relative; /* Needed for positioning the close button */
+}
+
+.modal-image {
+    width: 290px; /* Adjust size as needed */
+    height: 270px;
+}
+
+.modal-button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-button:hover {
+    background-color: #45a049;
+}
+
+/* Close Button Styles */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+        .spacer {
+            height: 20px; /* Space between top and subsequent items */
+        }
+
+        /* styles.css */
+        .desktop-menu a {
+            color: #03103a;
+            text-decoration: none;
+            padding: 10px;
+            position: relative;
+        }
+
+        .desktop-menu a:hover {
+            text-decoration: none; /* Ensure underline does not appear */
+        }
+
+        .desktop-menu a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 1px;
+            position: absolute;
+            background: #0e046b;
+            transition: width 0.3s;
+            position: absolute;
+            left: 0;
+            top: 100%;
+        }
+
+        .tablet-control {
+            color: #007bff;
+            text-decoration: none;
+            padding: 10px;
+            position: relative;
+        }
+
+        .desktop-menu a:hover::after {
+            width: 100%;
+        }
+
+        .login-top a {
+            color: #0d0344; /* White color for login link */
+            display: flex;
+            border: 2px solid #942f6d;
+            align-items: center;
+        }
+
+        .login-top a i {
+            background-color: #f0e8ed;
+            margin-right: 8px; /* Space between icon and text */
+            color: #04010e; /* White color for padlock icon */
+            border: 2px solid #851854;
+        }
+
+        .contact-info-phone {
+            margin-left: 10px;
+            font-size: 12px;
+        }
+
+        .language-drop {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+        }
+        
+        .language-drop ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .language-drop li {
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        
+        .language-drop li img {
+            width: 20px;
+            height: 15px;
+            margin-right: 10px;
+        }
+        
+        .language-drop li:hover {
+            background-color: #f1f1f1;
+        }
+        
+        /* Desktop search styles */
+        .desktop-menu1 {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #e4e3f7;
+            justify-content: space-between; /* This will push items to the left and right */
+        }
+        
+        .menu-icons-left {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .search-container {
+            flex: 1; /* Take up remaining space to push search input to the right */
+            text-align: right;
+        }
+        
+        .search-input {
+            width: 300px; /* Adjust width as needed */
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #03051f;
+            border-radius: 5px;
+        }
+
+/* Phone styles */
+.phone-icons {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0; /* Space between icons and search input */
+    justify-content: center;
+}
+
+.phone-icons i {
+    font-size: 20px; /* Adjust size as needed */
+    color: #333;
+}
+
+.search-input-phone {
+    width: calc(100% - 20px); /* Adjust width as needed */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 18px;
+}
+
+/* Section container */
+.section-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Space between boxes */
+    padding: 20px;
+}
+
+/* Individual text div styling */
+.shake-text-box {
+    position: relative;
+    width: 100%;
+    max-width: 350px; /* Adjust width as needed */
+    padding: 20px;
+    color: #fff; /* Text color for better readability */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Deeper shadow for emphasis */
+    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for text readability */
+    overflow: hidden;
+    text-align: center; /* Center align text */
+    opacity: 0; /* Start as invisible */
+    transform: translateY(100px); /* Start from below the viewport */
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out; /* Animation properties */
+}
+
+
+
+/* Common styles for both phone and laptop screens */
+.typing-text {
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for effect */
+    color: #333; /* Text color */
+    overflow: hidden; /* Hide the overflowing text */
+    white-space: nowrap; /* Prevent text wrapping */
+    border-right: 4px solid #333; /* Cursor effect */
+    position: absolute; /* Absolute positioning */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    text-align: center; /* Center align text */
+}
+
+/* Phone Screens */
+@media (max-width: 1023px) { /* Target screens smaller than 1024px */
+    #typing-text-phone {
+        font-size: 24px; /* Font size for phones */
+        animation: typing-phone 5s steps(30, end) infinite, blink-caret-phone .75s step-end infinite;
+    }
+
+    @keyframes typing-phone {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+
+    @keyframes blink-caret-phone {
+        from, to { border-color: transparent; }
+        50% { border-color: #333; }
+    }
+
+    #typing-text-laptop {
+        display: none; /* Hide laptop effect on phone screens */
+    }
+}
+
+/* Laptop Screens */
+@media (min-width: 1024px) { /* Target larger screens */
+    #typing-text-laptop {
+        font-size: 48px; /* Larger font size for laptops */
+        animation: typing-laptop 5s steps(40, end) infinite, blink-caret-laptop .75s step-end infinite;
+    }
+
+    @keyframes typing-laptop {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+
+    @keyframes blink-caret-laptop {
+        from, to { border-color: transparent; }
+        50% { border-color: #333; }
+    }
+
+    #typing-text-phone {
+        display: none; /* Hide phone effect on larger screens */
+    }
+}
+
+
+
+/* Basic slideshow styles */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    max-height: 500px; /* Adjust as needed */
+    overflow: hidden;
+}
+
+.mySlides {
+    display: none; /* Hide all slides initially */
+}
+
+.mySlides img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Desktop-specific styles */
+.desktop-slideshow {
+    display: none; /* Hide desktop slideshow by default */
+}
+
+@media (min-width: 768px) {
+    .desktop-slideshow {
+        display: block; /* Show desktop slideshow on larger screens */
+    }
+}
+
+/* Phone-specific styles */
+.phone-slideshow {
+    display: none; /* Hide phone slideshow by default */
+}
+
+@media (max-width: 767px) {
+    .phone-slideshow {
+        display: block; /* Show phone slideshow on smaller screens */
+    }
+}
+
+
+        /* Responsive Styles for Phones */
+        @media (max-width: 768px) {
+            .contact-info {
+                display: none; /* Hide contact info on small screens */
+            }
+            .desktop-menu {
+                display: none; /* Hide desktop menu on small screens */
+            }
+            .desktop-menu1 {
+                display: none; /* Hide desktop menu on small screens */
+            }
+            .phone-menu {
+                display: flex; /* Show phone menu on small screens */
+            }
+            .contact-info-phone {
+                display: block; /* Show contact info for phones */
+            }
+            .desktop-search {
+                display: none;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            /* Styles for medium devices (tablets) */
+            .desktop-menu {
+                display: none; /* Hide desktop menu on medium screens */
+            }
+            .phone-menu {
+                display: none; /* Hide phone menu on medium screens */
+            }
+            .contact-info-phone {
+                display: block; /* Show contact info for medium screens if needed */
+            }
+            .tablet-control {
+                display: none;
+            }
+        }
+
+        
+                /* Responsive Styles for Laptops and larger screens */
+        @media (min-width: 768px) {
+            .phone-menu {
+                display: none; /* Hide phone menu on larger screens */
+            }
+
+            .phone-icons{
+                display: none;
+            }
+            .contact-info-phone {
+                display: none; /* Hide phone-specific contact info on larger screens */
+            }
+            .desktop-menu {
+                display: flex; /* Show desktop menu on larger screens */
+                gap: 10px;
+                justify-content: center;
+            }
+        }
+
+
+        /* Footer styling */
+.footer {
+    background-color: #02000a; /* Dark background for contrast */
+    color: #fff; /* White text color */
+    padding: 20px 0;
+    font-family: Arial, sans-serif; /* Font for the footer */
+}
+
+/* Container for the footer sections */
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px; /* Center align footer content */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Individual footer section */
+.footer-section {
+    flex: 1;
+    margin: 0 10px;
+}
+
+/* Footer headings */
+.footer-section h4 {
+    margin-bottom: 10px;
+    font-size: 18px; /* Size of the heading */
+    color: #fff; /* White text color */
+}
+
+/* Footer text and links */
+.footer-section p, .footer-section ul {
+    font-size: 14px; /* Size of the text */
+    line-height: 1.6;
+}
+
+/* Footer links */
+.footer-section a {
+    color: #fff; /* White text color for links */
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Social icons */
+.social-icon {
+    display: inline-block;
+    margin: 5px;
+    color: #fff;
+    font-size: 20px; /* Size of the icons */
+}
+
+.social-icon:hover {
+    color: #ddd; /* Lighter color on hover */
+}
+
+/* Footer bottom section */
+.footer-bottom {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #020222; /* Slightly darker background for bottom */
+    font-size: 12px; /* Smaller text size */
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error | TeleTech Hub</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #4b6584;
+            color: #fff;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        nav a {
+            color: #f7f7f7;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 160px); /* Adjust according to footer height */
+            padding: 2rem;
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 3rem;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .error-message h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #eb3b5a;
+        }
+
+        .error-message p {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .error-code {
+            font-weight: bold;
+            color: #eb3b5a;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #2d98da;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #3867d6;
+        }
+
+        footer {
+            background-color: #4b6584;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #f7f7f7;
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        .error-container {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>TeleTech Hub</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="contact.html">Contact</a>
+            <a href="about.html">About Us</a>
+        </nav>
+    </header>
+    <main>
+        <section class="error-container">
+            <div class="error-message">
+                <h2>Oops! Something went wrong.</h2>
+                <p>We couldn't find the page you're looking for. You can go back or report this issue below.</p>
+                <p class="error-code">Error Code: 404</p>
+                <!-- Form Section -->
+                <form id="errorForm">
+                    <button type="submit" class="btn">Submit Error Report</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 TeleTech Hub. All rights reserved. <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        // Simulate a real-time form submission
+        document.getElementById('errorForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            alert('Error report submitted! We will investigate the issue.');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeleTech Hub - Sign up</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Reset and basic styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #1e1e1e; /* Darker background for a more professional look */
+    color: #ffffff; /* White text color */
+}
+
+/* Scrolling Text Container */
+.marquee-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+    color: #f0f0f0;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee {
+    display: flex;
+    align-items: center;
+    animation: scroll-left 15s linear infinite;
+}
+
+.marquee p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0 20px;
+}
+
+/* Scrolling animation */
+@keyframes scroll-left {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Box and Form Styling */
+.box {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.form {
+    background: #282828; /* Dark background for form */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow for better depth */
+    text-align: center;
+}
+
+.form h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.inputbox {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.inputbox input {
+    width: 100%;
+    padding: 12px 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background: #333; /* Dark background for inputs */
+    color: #ffffff;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inputbox input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Glow effect on focus */
+}
+
+.inputbox span {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #aaa;
+    pointer-events: none;
+    transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+}
+
+.inputbox input:focus + span,
+.inputbox input:valid + span {
+    top: -10px;
+    left: 10px;
+    color: #007bff;
+    font-size: 12px;
+}
+
+.sub {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.sub:hover {
+    background: #0056b3;
+    transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .form {
+        padding: 20px;
+    }
+
+    .inputbox input,
+    .sub {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
+}
+
+.modal-content {
+    background-color: #333;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.modal-content h2 {
+    margin: 0 0 15px;
+    color: #ffffff;
+}
+
+.modal-content p {
+    margin: 10px 0;
+    color: #ddd; /* Light grey text for readability */
+}
+
+.modal-content button {
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #45a049;
+}
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="form">
+            <h2>Sign-Up Form</h2>
+            <form id="loginForm">
+                <div class="inputbox">
+                    <input type="text" id="username" required>
+                    <span>Username</span>
+                </div>
+                <div class="inputbox">
+                    <input type="email" id="email" required>
+                    <span>E-mail</span>
+                </div>
+                <div class="inputbox">
+                    <input type="text" id="phone" required>
+                    <span>Password</span>
+                </div>
+                <input type="submit" value="Submit" class="sub" id="submit">
+            </form>
+        </div>
+    </div>
+    
+    <!-- The Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>You have successfully signed up!</h2>
+            <p>Sign in now</p>
+            <button id="modalButton">OK</button>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAJE5CaaFJDlEt4_snZQR8pbpgh7JTcBaw",
+            authDomain: "creativetutorial-e5d5e.firebaseapp.com",
+            projectId: "creativetutorial-e5d5e",
+            storageBucket: "creativetutorial-e5d5e.appspot.com",
+            messagingSenderId: "786862672314",
+            appId: "1:786862672314:web:c21463b2c5a2ac37eb3583"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // Get a reference to the database service
+        const db = getDatabase(app);
+
+        document.getElementById("loginForm").addEventListener('submit', function(e){
+            e.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+
+            // Set data in Firebase
+            set(ref(db, 'users/' + username), {
+                username: username,
+                email: email,
+                phoneNumber: phone
+            }).then(() => {
+                // Show modal dialog
+                const modal = document.getElementById("successModal");
+                modal.style.display = "block";
+                
+                // Handle button click to redirect to login page
+                document.getElementById("modalButton").onclick = function() {
+                    window.location.href = "login.html";
+                }
+            }).catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+        });
+    </script>
+</body>
+</html>

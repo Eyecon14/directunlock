@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeleTechHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+<!-- Modal Structure -->
+<div id="telegramModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <img src="imgs/tele.jpeg" alt="Telegram" class="modal-image">
+        <button class="modal-button">Join</button>
+    </div>
+</div>
+
+        <div class="top-bar">
+            <div class="contact-info">
+                <a href="https://wa.me/qr/3JMHLF4XB3L7H1" class="icon" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-whatsapp"></i> +1 (267) 850-5854
+                </a>
+                <a href="tel:+1267850-5854" class="icon"><i class="fas fa-phone-alt"></i> +1 (267) 850-5854 </a>
+                <a href="mailto:teletechhub.ishop.us@gmail.com" class="icon"><i class="fas fa-envelope"></i> teletechhub.ishop.us@gmail.com</a>
+            </div>
+
+            <div class="contact-info-phone">
+                <a href="tel:+1267850-5854" class="icon"><i class="fas fa-phone-alt"></i></a>
+                <a href="https://wa.me/qr/3JMHLF4XB3L7H1" class="icon" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:teletechhub.ishop.us@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="country-selector">
+                <button class="country-btn">🌍EN</button> <!-- Flag icon or globe icon -->
+                <div class="language-drop">
+                    <ul>
+                        <li data-lang="en"><img src="flags/en.png" alt="English"> English</li>
+                        <li data-lang="fr"><img src="flags/fr.png" alt="French"> French</li>
+                        <li data-lang="de"><img src="flags/de.png" alt="German"> German</li>
+                        <li data-lang="ar"><img src="flags/ar.png" alt="Arabic"> Arabic</li>
+                        <li data-lang="sv"><img src="flags/sv.png" alt="Swedish"> Swedish</li>
+                        <li data-lang="cs"><img src="flags/cs.png" alt="Czech"> Czech</li>
+                        <li data-lang="es"><img src="flags/es.png" alt="Spanish"> Spanish</li>
+                        <li data-lang="tr"><img src="flags/tr.png" alt="Turkish"> Turkish</li>
+                        <li data-lang="th"><img src="flags/th.png" alt="Thai"> Thai</li>
+                        <li data-lang="af"><img src="flags/af.png" alt="Afrikaans"> Afrikaans</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+
+
+        <div class="phone-menu">
+            <button class="menu-icon">☰</button> <!-- Menu icon -->
+            <div class="phone-logo">
+                <img src="imgs/logo.jpg" alt="Logo" width="160px" height="48px">
+            </div>
+            <div class="overlay"></div> <!-- Overlay to close menu when clicking outside -->
+            <div class="dropdown-menu">
+                <div class="menu-container">
+                    <div class="menu-top">
+                        <a href=""><i class="fas fa-arrow-left back-arrow"></i> TeleTechHub</a>
+                    </div>
+
+                    <a href="index.html">Log-Out</a>
+                    
+                    <div>
+                        PLACE ORDER
+                    </div>
+                    <a href="imei.html">IMEI Service</a>
+                    <a href="server.html">Server Services</a>
+                    <div>
+                        ORDER HISTORY
+                    </div>
+                    <a href="orders.html">IMEI Orders</a>
+                    <a href="order.html">Server Orders</a>
+                    <a href="#">Retail Orders</a>
+                    <a href="fund.html">Auto Add Funds</a>
+                    <a href="https://wa.me/qr/3JMHLF4XB3L7H1">Contact Owner</a>
+                    <a href="#">Advanced History</a>
+                    <a href="https://t.me/teletechhub">Telegram Channel</a>
+                    <a href="#">Products</a>
+                    <a href="#">SCAM ALERT</a>
+                </div>
+            </div>
+        </div>
+
+                        <!-- Phone Menu -->
+    <div class="phone-menu">
+        <!-- Existing phone-menu content -->
+        
+        <!-- Search Input for Phone -->
+        <input type="text" class="search-input-phone" placeholder="Search...">
+    </div>
+        
+
+        <nav class="desktop-menu">
+            <div>
+                <img src="imgs/logo.jpg" alt="" width="160px" height="48px">
+            </div>
+            <a href="welcome.html">Client Area</a>
+            <li class="menu-item dropdown">
+                <a href="#" class="dropdown-toggle">Place Order <span class="arrow">&#9662;</span></a>
+                <ul class="dropdown-menu1">
+                    <li><a href="imei.html">IMEI Service</a></li>
+                    <li><a href="server.html">Server Service</a></li>
+                </ul>
+            </li>
+            <li class="menu-item dropdown">
+                <a href="#" class="dropdown-toggle">Order History <span class="arrow">&#9662;</span></a>
+                <ul class="dropdown-menu2">
+                    <li class="imei-order"><a href="orders.html" id="imei-orders">IMEI Orders</a></li>
+                    <li class="server-order"><a href="order.html" id="servers-orders">Servers Orders</a></li>
+                    <li class="retail-order"><a href="#" id="retail-orders">Retail Orders</a></li>
+                    <li class="advanced-history"><a href="#" id="advanced-history">Advanced History</a></li>
+                </ul>
+            </li>            
+            <a href="https://t.me/teletechhub">⚡Telegram Channel</a>
+            <a href="fund.html">Auto Add Funds</a>
+            <div class="tablet-control">
+            <a href="https://t.me/teletech_hub">Contact Owner</a>
+            </div>
+            <div class="login-top">
+                <a href="index.html"><i class="fas fa-lock-open"></i></i> Sign-Out</a>    
+        </nav>
+
+        <nav class="desktop-menu1">
+            <div class="menu-icons-left">
+                <img src="imgs/OIP.jpeg" alt="Logo" width="40" height="40">
+                <img src="imgs/OIP (1).jpeg" alt="Logo" width="40" height="40">
+                <img src="imgs/download.jpeg" alt="Logo" width="40" height="40">
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+            </div>
+        </nav>   
+
+        <section>
+            <div class="client">
+                <h2>CLIENT AREA DASHBOARD</h2>
+                <div class="auth-info">
+                    <p>Two Factor Authentication is disabled. Secure your account by enabling two-factor authentication.</p>
+                    <a href="verification.html">
+                    <div class="enable"><button>Enable</button></div>
+                    </a>    
+                </div>
+            </div>
+        </section>
+        
+                
+        <section class="container">
+            <div class="div1">
+                <div class="current-balance">
+                    <h2>Your Current Balance</h2>
+                    <p class="figure">$0.00</p>
+                    <a href="fund.html">
+                    <button><i class="fas fa-shopping-cart"></i> Buy Credit</button>
+                    <a/>
+                </div>
+            </div>
+            <div class="div2">
+                <h2>Unpaid Balance</h2>
+                <p class="figure">$0.00</p>
+            </div>
+            <div class="div3">
+                <h2>Announcements</h2>
+                <p>iRemoval Pro New Gen Hello ByPass with signal (iPhone 12): 105 USD</p>
+                <p>iRemoval Pro New Gen Hello ByPass with signal (iPhone 14): 175 USD</p>
+                <p>iRemoval Pro New Gen Hello ByPass with signal (iPhone 11 Pro Max): 110 USD</p>
+                <p>iRemoval Pro New Gen Hello ByPass with signal (iPhone 13): 145 USD</p>
+                <p>iRemoval Pro New Gen Hello ByPass with signal (iPhone Xr/Xs/XsMax): 70 USD</p>
+                <p>iRemoval Pro New Gen Hello ByPass with signal (iPhone 12): 105 USD</p>
+                <p>iRemoval Pro New Gen Hello ByPass with signal (iPhone 12): 105 USD</p>
+                <p>iRemoval Pro New Gen Hello ByPass with signal (iPhone 12): 105 USD</p>
+                <p>iRemoval Pro New Gen Hello ByPass with signal (iPhone 12): 105 USD</p>
+                <p>iRemoval Pro New Gen Hello ByPass with signal (iPhone 12): 105 USD</p>
+                <p>iRemoval Pro New Gen Hello ByPass with signal (iPhone 12): 105 USD</p>
+                <p>iRemoval Pro New Gen Hello ByPass with signal (iPhone 12): 105 USD</p>
+            </div>
+            <div class="div4">
+                <div class="left">
+                    <h2>Total Receipts</h2>
+                    <p class="figure">$0.00</p>
+                </div>
+                <div class="right">
+                    <h2>Locked Account</h2>
+                    <p class="figure">$0.00</p>
+                </div>
+            </div>
+            <div class="div5">
+                <h2>Orders Placed Successfully</h2>
+                <p class="figure">0/0</p>
+            </div>
+            <div class="div6">
+                <h2>Orders in Process</h2>
+                <p class="figure">0/0</p>
+            </div>
+            <div class="div7">
+                <h2>Orders Process Fails</h2>
+                <p class="figure">0/0</p>
+            </div>
+        </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h4>About Us</h4>
+                <p>We are committed to providing the best service in tech. Learn more about our mission and values.</p>
+            </div>
+            <div class="footer-section links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="https://t.me/teletechhub">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h4>Contact Us</h4>
+                <p>Email: teletechhub.ishop.us@gmail.com</p>
+                <p>Phone: +1 (267) 850-5854</p>
+            </div>
+            <div class="footer-section social">
+                <h4>Follow Us</h4>
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TeleTech Hub. All rights reserved.
+        </div>
+    </footer>
+    
+    </header>
+    <script src="scripts.js"></script>
+</body>
+</html>

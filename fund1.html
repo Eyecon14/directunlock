@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Funds and Payment</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1d2230;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background-color: #2d3448;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Fund.html Styles */
+        .breadcrumb {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .balance {
+            font-size: 18px;
+            background-color: #2a3345;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .note {
+            background-color: #2a3345;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            margin: -8px;
+            margin-top: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+
+        .dropdown {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+            font-size: 16px;
+            background-color: #444b59;
+            color: #fff;
+        }
+
+        .summary {
+            margin-top: 20px;
+            background-color: #2a3345;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .summary div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .next-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .next-button a {
+            padding: 10px 20px;
+            background-color: #6b6de6;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .next-button a:hover {
+            background-color: #5a5cd9;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Fund1.html Styles */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .header p {
+            margin: 10px 0 0;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .status {
+            text-align: right;
+            color: red;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .order-details {
+            margin-bottom: 20px;
+        }
+
+        .order-details div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .table {
+            background-color: #2a3345;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .table-header,
+        .table-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #444b59;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .payment-method button,
+        .pay-now button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .payment-method button {
+            background-color: #444b59;
+        }
+
+        .pay-now button {
+            background-color: #28a745;
+            font-size: 18px;
+        }
+
+        .pay-now button:hover {
+            background-color: #218838;
+        }
+
+        .footer p {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .info-block {
+            margin-bottom: 15px;
+        }
+
+        .info-block strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .copyable {
+            background-color: #e9f5ff;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .copyable:hover {
+            background-color: #d0ebff;
+        }
+
+        .cancel-button {
+            background-color: #FF4D4F;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cancel-button:hover {
+            background-color: #e04344;
+        }
+
+        .pending-payment {
+            color: #FF9800;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pending-payment .spinner {
+            border: 3px solid rgba(255, 152, 0, 0.3);
+            border-top: 3px solid #FF9800;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin-left: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .wallet-address, .amount-value {
+            
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .network-type-badge {
+            background-color: #61A4F1;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .alert {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #32C671;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Fund.html Section -->
+        <div id="fund-section">
+            <div class="breadcrumb">
+                <a href="#">Home</a> / <a href="#">+Add Funds</a>
+            </div>
+
+            <div class="title">+ADD FUNDS</div>
+
+            <div class="balance">$<span id="current-balance">0.00</span></div>
+            <div class="note">
+                * You can add funds to your account so that invoices are automatically paid when they are generated. All deposits are non-refundable.
+            </div>
+
+            <div class="form-group">
+                <label for="deposit">Deposit Now</label>
+                <input type="number" id="deposit-input" placeholder="0" oninput="updateValues()">
+                <div class="note">Minimum Deposit : $50.000  Maximum Deposit : $10,000.000</div>
+            </div>
+
+            <div class="form-group">
+                <label for="method">Select Payment Method</label>
+                <select id="method" class="dropdown">
+                    <option>Binance Pay | USDT | BTC</option>
+                    <option>Skrill</option>
+                </select>
+            </div>
+
+            <div class="summary">
+                <div><span>Deposit</span><span>$<span id="deposit-amount">0.00</span></span></div>
+                <div><span>Fixed Charge</span><span>$<span id="fixed-charge">0.00</span></span></div>
+                <div><span>Total</span><span>$<span id="total-amount">0.00</span></span></div>
+            </div>
+
+            <div class="next-button">
+                <a href="javascript:void(0);" onclick="goToFund1()">Next →</a>
+            </div>
+
+            <div class="footer">
+                Balance after deposit : $<span id="balance-after">0.00</span>
+            </div>
+        </div>
+
+        <!-- Fund1.html Section (Initially Hidden) -->
+        <div id="fund1-section" class="hidden">
+            <div class="header">
+                <img src="logo.png" alt="Company Logo">
+                <p>401, Alien street, Red Planet. 444123.</p>
+            </div>
+
+            <div class="status">Unpaid</div>
+
+            <div class="order-details">
+                <div><span>Order ID</span><span id="order-id"></span></div>
+                <div><span>Date</span><span id="order-date"></span></div>
+                <div><span>Payment Due by</span><span id="due-date"></span></div>
+            </div>
+
+            <div class="table">
+                <div class="table-header">
+                    <span>DESCRIPTION</span>
+                    <span>QNT</span>
+                    <span>AMOUNT</span>
+                </div>
+                <div class="table-row">
+                    <span>+Add Funds</span>
+                    <span>1</span>
+                    <span>$<span id="final-amount">0.00</span></span>
+                </div>
+            </div>
+
+            <div class="summary">
+                <div><span>Sub Total</span><span>$<span id="sub-total">0.00</span></span></div>
+                <div><span>Shipping Charges</span><span>$0.00</span></div>
+                <div><span>Credit</span><span>$0.00</span></div>
+                <div><span>Total</span><span>$<span id="final-total">0.00</span></span></div>
+            </div>
+
+            <div class="payment-method">
+                <button id="payment-method">Binance Pay | USDT | BTC</button>
+            </div>
+
+            <div class="pay-now">
+                <button><a href="javascript:void(0);" onclick="goToFund2()">Pay Now →</a></button>
+            </div>
+
+            <div class="footer">
+                <p>401, Alien street, Red Planet. 444123.</p>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Fund2.html Section (Initially Hidden) -->
+<div id="fund2-section" class="container hidden">
+    <h2>Pending Payment</h2>
+
+    <div class="info-block">
+        <strong>Credits you receive:</strong>
+        <div id="credit-receive">
+            <!-- Filled by JavaScript -->
+        </div>
+    </div>
+
+    <div class="info-block">
+        <strong>Store URL:</strong>
+        <a href="https://teletechhub.com" target="_blank" style="color: #007BFF;">teletechhub.com</a>
+    </div>
+
+    <button class="cancel-button">Cancel Payment</button>
+
+    <div class="pending-payment">
+        <strong>Pending Payment</strong>
+        <div class="spinner"></div>
+    </div>
+
+    <div class="info-block">
+        <strong>Wallet Address:</strong>
+        <div class="wallet-address" onclick="copyText('wallet')">
+            <div>
+                <h3>
+                    BINANCE | USDT | BTC
+                </h3>
+                <ul>TLNEJmdL1rCKbECUhGxVbEChedV6o68eFU</ul>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h3>
+            BINANCE ID:
+        </h3>
+        <ul>976270661</ul>
+    </div>
+
+    <div>
+        <h3>SKRILL<h3>
+            <ul>unlockmyapple3@gmail.com</ul>
+    </div>
+
+    <div class="info-block">
+        <strong>Network Type:</strong>
+        <div class="network-type-badge">
+            TRC20
+        </div>
+    </div>
+
+    <div class="info-block">
+        <strong>Amount to send from Payment Method (Including Payment Method $1 fees):</strong>
+        <div id="amount-to-send">
+            <!-- Filled by JavaScript -->
+        </div>
+    </div>
+
+    <div class="info-block">
+        <strong>Payment Method:</strong>
+        <div id="payment-method-fund2">
+            <!-- Filled by JavaScript -->
+        </div>
+    </div>
+</div>
+
+
+    <script>
+
+                // Function to go to Fund2.html section
+        function goToFund2() {
+            const totalAmount = document.getElementById('total-amount').textContent;
+            const paymentMethod = document.getElementById('method').value;
+            
+            // Update Fund2.html values
+            document.getElementById('final-amount').textContent = totalAmount;
+            document.getElementById('sub-total').textContent = totalAmount;
+            document.getElementById('final-total').textContent = (parseFloat(totalAmount) + 1).toFixed(2); // Adding $1 fee
+
+            // Set the Credits you receive and Amount to send
+            document.getElementById('credit-receive').textContent = totalAmount;
+            document.getElementById('amount-to-send').textContent = (parseFloat(totalAmount) + 1).toFixed(2) + ' USDT'; // Adding $1 fee
+
+            // Set the payment method
+            document.getElementById('payment-method-fund2').textContent = paymentMethod;
+
+            // Hide Fund1 section and show Fund2 section
+            document.getElementById('fund1-section').classList.add('hidden');
+            document.getElementById('fund2-section').classList.remove('hidden');
+        }
+
+
+        // Function to update displayed values
+        function updateValues() {
+            const depositInput = document.getElementById('deposit-input').value;
+            const depositAmount = parseFloat(depositInput || 0).toFixed(2);
+            const fixedCharge = (depositAmount * 0.02).toFixed(2); // Example fixed charge calculation
+            const totalAmount = (parseFloat(depositAmount) + parseFloat(fixedCharge)).toFixed(2);
+
+            document.getElementById('deposit-amount').textContent = depositAmount;
+            document.getElementById('fixed-charge').textContent = fixedCharge;
+            document.getElementById('total-amount').textContent = totalAmount;
+            document.getElementById('balance-after').textContent = totalAmount;
+        }
+
+        // Function to go to Fund1.html section
+        function goToFund1() {
+            const orderId = generateOrderId();
+            const currentDate = new Date();
+            const dueDate = new Date(currentDate);
+            dueDate.setDate(currentDate.getDate() + 7); // Due date is 7 days from now
+
+            document.getElementById('order-id').textContent = orderId;
+            document.getElementById('order-date').textContent = formatDate(currentDate);
+            document.getElementById('due-date').textContent = formatDate(dueDate);
+            document.getElementById('final-amount').textContent = document.getElementById('total-amount').textContent;
+            document.getElementById('sub-total').textContent = document.getElementById('total-amount').textContent;
+            document.getElementById('final-total').textContent = document.getElementById('total-amount').textContent;
+            document.getElementById('payment-method').textContent = document.getElementById('method').value;
+
+            document.getElementById('fund-section').classList.add('hidden');
+            document.getElementById('fund1-section').classList.remove('hidden');
+        }
+
+        // Function to generate a random Order ID
+        function generateOrderId() {
+            return 'ORD-' + Math.floor(Math.random() * 1000000);
+        }
+
+        // Function to format the date in MM/DD/YYYY format
+        function formatDate(date) {
+            const day = ('0' + date.getDate()).slice(-2);
+            const month = ('0' + (date.getMonth() + 1)).slice(-2);
+            const year = date.getFullYear();
+            return `${month}/${day}/${year}`;
+
+            function copyText(elementId) {
+                let text = '';
+                if (elementId === 'email') {
+                    text = 'ahllnytl@gmail.com';
+                } else if (elementId === 'wallet') {
+                    text = 'TSTZITazf8bxv4yi9fWYE4qeHhmsQuspE2';
+                } else if (elementId === 'amount') {
+                    text = '51.5005 USDT';
+                }
+    
+                // Create a temporary input element to select and copy the text
+                const tempInput = document.createElement('input');
+                tempInput.value = text;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+    
+                // Show the alert
+                const alertBox = document.getElementById('alert');
+                alertBox.style.display = 'block';
+    
+                // Hide the alert after 2 seconds
+                setTimeout(() => {
+                    alertBox.style.display = 'none';
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>

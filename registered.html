@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EyeconTECH-Cloud</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #333;
+        }
+        #search {
+            margin: 20px;
+            padding: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .table-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px 0;
+            overflow-x: auto;
+            overflow-y: auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .actions .edit {
+            background-color: #ffa500;
+            color: white;
+        }
+        .actions .delete {
+            background-color: #ff0000;
+            color: white;
+        }
+        .actions .save {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .pagination {
+            margin: 20px 0;
+        }
+        .pagination button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .pagination button.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        #exportButton, #addUserButton {
+            margin: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #addUserForm {
+            display: none;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+        #addUserForm input {
+            padding: 10px;
+            margin: 5px 0;
+            width: 90%;
+            max-width: 500px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        #addUserForm button {
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .table-container {
+                width: 100%;
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            th, td {
+                box-sizing: border-box;
+                width: 100%;
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+            }
+            th {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            tr {
+                margin: 0 0 20px 0;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+            td:before {
+                position: absolute;
+                top: 50%;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                transform: translateY(-50%);
+                font-weight: bold;
+                text-align: left;
+                content: attr(data-label);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Registered Users</h2>
+    <div>
+        <h4>
+            Generate the sign-up link <a href="signup.html">Click Here</a>
+            <h4>
+    </div>
+    <input type="text" id="search" placeholder="Search for users...">
+    <button id="addUserButton">Add User</button>
+    <form id="addUserForm">
+        <input type="text" id="newUsername" placeholder="Username" required>
+        <input type="email" id="newEmail" placeholder="Email" required>
+        <input type="text" id="newPhone" placeholder="Password" required>
+        <button type="submit">Add User</button>
+    </form>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Username</th>
+                    <th onclick="sortTable(1)">Email</th>
+                    <th onclick="sortTable(2)">Password</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                <!-- Data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination" id="pagination"></div>
+    <button id="exportButton">Export to CSV</button>
+
+    <script type="module">
+        // JavaScript code remains mostly the same, focusing on maintaining functionalities you want
+    </script>
+</body>
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
+    import { getDatabase, ref, get, set, update, remove } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyAJE5CaaFJDlEt4_snZQR8pbpgh7JTcBaw",
+        authDomain: "creativetutorial-e5d5e.firebaseapp.com",
+        projectId: "creativetutorial-e5d5e",
+        storageBucket: "creativetutorial-e5d5e.appspot.com",
+        messagingSenderId: "786862672314",
+        appId: "1:786862672314:web:c21463b2c5a2ac37eb3583"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    let usersData = [];
+    let currentPage = 1;
+    const rowsPerPage = 5;
+
+    // Function to fetch and display users
+    function fetchUsers() {
+        const usersRef = ref(db, 'users');
+        get(usersRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                usersData = Object.entries(snapshot.val());
+                displayUsers(usersData);
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error("Error getting users: ", error);
+        });
+    }
+
+    function displayUsers(users) {
+        const tbody = document.getElementById("userTableBody");
+        tbody.innerHTML = ""; // Clear the table body
+
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+        const paginatedUsers = users.slice(start, end);
+
+        paginatedUsers.forEach(([key, user]) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td data-label="Username">${user.username}</td>
+                <td data-label="Email">${user.email}</td>
+                <td data-label="Phone Number">${user.phoneNumber}</td>
+                <td class="actions">
+                    <button class="edit" onclick="editUser('${key}')">Edit</button>
+                    <button class="delete" onclick="deleteUser('${key}')">Delete</button>
+                    <button class="save" style="display:none" onclick="saveUser('${key}', this)">Save</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        setupPagination(users.length);
+    }
+
+    function setupPagination(totalRows) {
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+        const paginationDiv = document.getElementById("pagination");
+        paginationDiv.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement("button");
+            button.textContent = i;
+            button.onclick = () => goToPage(i);
+            if (i === currentPage) {
+                button.classList.add("disabled");
+            }
+            paginationDiv.appendChild(button);
+        }
+    }
+
+    function goToPage(page) {
+        currentPage = page;
+        displayUsers(usersData);
+    }
+
+    function sortTable(columnIndex) {
+        const sortedUsers = [...usersData].sort((a, b) => {
+            const key = columnIndex === 0 ? 'username' : columnIndex === 1 ? 'email' : 'phoneNumber';
+            return a[1][key].localeCompare(b[1][key]);
+        });
+        displayUsers(sortedUsers);
+    }
+
+    document.getElementById("search").addEventListener("input", function(e) {
+        const query = e.target.value.toLowerCase();
+        const filteredUsers = usersData.filter(([key, user]) => 
+            user.username.toLowerCase().includes(query) ||
+            user.email.toLowerCase().includes(query) ||
+            user.phoneNumber.toLowerCase().includes(query)
+        );
+        displayUsers(filteredUsers);
+    });
+
+    document.getElementById("exportButton").addEventListener("click", function() {
+        let csvContent = "data:text/csv;charset=utf-8,";
+        csvContent += "Username,Email,Phone Number\n";
+        usersData.forEach(([key, user]) => {
+            csvContent += `${user.username},${user.email},${user.phoneNumber}\n`;
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "registered_users.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+
+    document.getElementById("addUserButton").addEventListener("click", function() {
+        const addUserForm = document.getElementById("addUserForm");
+        addUserForm.style.display = addUserForm.style.display === "none" ? "flex" : "none";
+    });
+
+    document.getElementById("addUserForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const username = document.getElementById("newUsername").value;
+        const email = document.getElementById("newEmail").value;
+        const phone = document.getElementById("newPhone").value;
+
+        // Add new user to Firebase
+        set(ref(db, 'users/' + username), {
+            username: username,
+            email: email,
+            phoneNumber: phone
+        }).then(() => {
+            fetchUsers();
+            document.getElementById("addUserForm").reset();
+            document.getElementById("addUserForm").style.display = "none";
+        }).catch((error) => {
+            console.error("Error adding user: ", error);
+        });
+    });
+
+    window.editUser = function(key) {
+        const row = document.querySelector(`button[onclick="editUser('${key}')"]`).closest('tr');
+        const cells = row.querySelectorAll('td[data-label]');
+
+        cells.forEach(cell => {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = cell.textContent;
+            cell.textContent = '';
+            cell.appendChild(input);
+        });
+
+        row.querySelector('.edit').style.display = 'none';
+        row.querySelector('.delete').style.display = 'none';
+        row.querySelector('.save').style.display = 'inline-block';
+    };
+
+    window.saveUser = function(key, saveButton) {
+        const row = saveButton.closest('tr');
+        const inputs = row.querySelectorAll('td[data-label] input');
+
+        const updatedUser = {
+            username: inputs[0].value,
+            email: inputs[1].value,
+            phoneNumber: inputs[2].value
+        };
+
+        update(ref(db, 'users/' + key), updatedUser).then(() => {
+            fetchUsers();
+        }).catch((error) => {
+            console.error("Error updating user: ", error);
+        });
+    };
+
+    window.deleteUser = function(key) {
+        if (confirm("Are you sure you want to delete this user?")) {
+            remove(ref(db, 'users/' + key)).then(() => {
+                fetchUsers();
+            }).catch((error) => {
+                console.error("Error deleting user: ", error);
+            });
+        }
+    };
+
+    // Fetch users when the page loads
+    window.onload = fetchUsers;
+</script>
+
+</body>
+</html>
