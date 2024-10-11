@@ -8,136 +8,123 @@
     <title>IMEI Orders</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
+            font-family: 'Helvetica', sans-serif;
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
             margin: 0;
             padding: 20px;
         }
-
+        
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #555;
-            font-weight: 600;
-        }
-
-        .table-container {
-            overflow-x: auto;
-            background-color: #fff;
-            border-radius: 12px;
+            margin: auto;
             padding: 20px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e0e0e0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 800px;
+            background: white;
             border-radius: 10px;
-            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-
-        th, td {
-            padding: 16px 20px;
-            text-align: left;
-            white-space: nowrap;
-        }
-
-        th {
-            background-color: #007bff;
-            color: #fff;
-            font-weight: 500;
-        }
-
-        td {
-            background-color: #f9f9f9;
-            border-bottom: 1px solid #eee;
-        }
-
-        td:last-child {
+        
+        h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
             text-align: center;
         }
-
-        tr:hover td {
-            background-color: #f1f1f1;
-        }
-
-        .no-records {
-            text-align: center;
-            color: #999;
-            font-style: italic;
-        }
-
+        
         .section-title {
-            font-size: 14px;
-            margin: 15px 0;
-            color: #777;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Button Styles */
-        .export-buttons {
+            font-size: 18px;
+            color: #666;
+            text-align: center;
             margin-bottom: 20px;
+        }
+        
+        .export-buttons {
             display: flex;
-            justify-content: center;
-            gap: 15px;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
-
+        
         .export-buttons button {
-            background-color: #28a745;
-            color: #fff;
+            background: #ff7e5f;
             border: none;
-            padding: 12px 20px;
-            border-radius: 50px;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
             cursor: pointer;
-            font-size: 1em;
-            transition: all 0.3s ease;
+            transition: background 0.3s;
         }
-
+        
         .export-buttons button:hover {
-            background-color: #218838;
-            transform: translateY(-3px);
+            background: #feb47b;
         }
-
-        .export-buttons button i {
-            margin-right: 8px;
-        }
-
-        .entries {
-            margin-bottom: 15px;
-            font-size: 1em;
-        }
-
-        /* Search Input Styles */
+        
         .search {
             margin-bottom: 20px;
             text-align: center;
         }
-
-        .search input[type="text"] {
-            width: 350px;
-            padding: 12px 18px;
-            border-radius: 50px;
-            border: 1px solid #ddd;
-            background-color: #fff;
-            color: #333;
-            transition: all 0.3s ease;
-        }
-
-        .search input[type="text"]:focus {
-            border-color: #007bff;
+        
+        .search input {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
             outline: none;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
-
+        
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        thead {
+            background: #fda085;
+            color: white;
+        }
+        
+        tbody tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        tbody tr:hover {
+            background: #f1f1f1;
+        }
+        
+        .no-records {
+            text-align: center;
+            color: #999;
+            padding: 15px;
+            font-size: 16px;
+        }
+        
+        button#exportButton {
+            display: block;
+            margin: 20px auto;
+            background: #ff7e5f;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        button#exportButton:hover {
+            background: #feb47b;
+        }
+        
     </style>
 </head>
 <body>

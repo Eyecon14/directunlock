@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.modal-button').addEventListener('click', function() {
         // Handle the "Join" button click event
         // For example, redirect to a Telegram group or other action
-        window.location.href = 'https://t.me/teletechhub';
+        window.location.href = 'https://t.me/DirectUnlock_z';
     });
 
     // Close the modal when the close button (×) is clicked

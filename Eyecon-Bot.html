@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Chatbot</title>
+    <title>DirectUnlock Chatbot</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
         }
-
+        
         /* Chatbot Icon */
         .chatbot-icon {
             position: fixed;
@@ -27,13 +27,14 @@
             font-size: 30px;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
-
+        
         .chatbot-icon:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
         }
-
+        
         /* Chatbot Container */
         .chatbot-container {
             position: fixed;
@@ -42,14 +43,14 @@
             width: 350px;
             max-height: 500px;
             background-color: white;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             display: none;
             flex-direction: column;
             overflow: hidden;
-            animation: fadeIn 0.4s;
+            animation: fadeIn 0.4s ease;
         }
-
+        
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -60,39 +61,47 @@
                 transform: scale(1);
             }
         }
-
+        
         /* Chat Header */
         .chatbot-header {
             background-color: #007bff;
             color: white;
-            padding: 1rem;
+            padding: 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px 10px 0 0;
         }
-
+        
         .chatbot-header span {
             cursor: pointer;
+            font-size: 20px;
         }
-
+        
+        .chatbot-header span:hover {
+            color: #f4f4f4;
+        }
+        
         /* Chat Messages */
         .chatbot-messages {
-            padding: 1rem;
+            padding: 16px;
             flex-grow: 1;
             overflow-y: auto;
+            background-color: #f9f9f9;
         }
-
+        
         .chatbot-message {
-            margin-bottom: 1rem;
-            padding: 10px;
+            margin-bottom: 16px;
+            padding: 12px;
             background-color: #f1f1f1;
             border-radius: 8px;
-            animation: slideUp 0.3s;
             display: flex;
             align-items: flex-start;
+            animation: slideUp 0.3s ease;
         }
-
+        
         @keyframes slideUp {
             from {
                 transform: translateY(20px);
@@ -103,55 +112,58 @@
                 opacity: 1;
             }
         }
-
+        
         .chatbot-message.user {
             background-color: #007bff;
             color: white;
             text-align: right;
+            align-self: flex-end;
         }
-
+        
         .chatbot-message.ai {
             background-color: #e9ecef;
         }
-
+        
         .chatbot-message .icon {
             margin-right: 10px;
             font-size: 24px;
         }
-
+        
         .chatbot-message .text {
             max-width: 250px;
             word-wrap: break-word;
         }
-
+        
         /* Custom Questions */
         .custom-questions {
             display: flex;
             justify-content: space-around;
-            padding: 10px;
+            padding: 12px;
             background-color: #e9ecef;
             border-top: 1px solid #ccc;
         }
-
+        
         .custom-question {
-            padding: 8px;
+            padding: 8px 12px;
             background-color: #007bff;
             color: white;
             border-radius: 15px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
-
+        
         .custom-question:hover {
             background-color: #0056b3;
+            transform: translateY(-2px);
         }
-
+        
         /* Typing Animation */
         .typing {
             display: flex;
             align-items: center;
+            padding: 12px;
         }
-
+        
         .typing span {
             background-color: #007bff;
             border-radius: 50%;
@@ -160,7 +172,7 @@
             margin-right: 5px;
             animation: bounce 0.5s infinite alternate;
         }
-
+        
         @keyframes bounce {
             from {
                 transform: translateY(0);
@@ -169,14 +181,15 @@
                 transform: translateY(-5px);
             }
         }
-
+        
         .typing span:nth-child(2) {
             animation-delay: 0.1s;
         }
-
+        
         .typing span:nth-child(3) {
             animation-delay: 0.2s;
         }
+        
     </style>
 </head>
 <body>

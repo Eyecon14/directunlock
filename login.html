@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeleTech Hub</title>
+    <title>DirectUnlock</title>
     <link rel="stylesheet" href="styles.css">
     <style>
       @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
@@ -15,195 +15,162 @@
       }
 
       body {
-          display: flex;
-          height: 100vh;
-          text-align: center;
-          align-items: center;
-          justify-content: center;
-          background: #151515;
-      }
-
-      /* Login Form */
-      .box {
-          width: 100%;
-          max-width: 410px;
-          margin: auto;
-      }
-
-      .form {
-          background: #1b1b1b;
-          padding: 40px 35px 60px;
-          border: 1px solid black;
-          border-radius: 5px;
-          box-shadow: inset 0 0 1px #272727;
-      }
-
-      .form h2 {
-          font-size: 30px;
-          color: #c7c7c7;
-          font-weight: 600;
-          letter-spacing: 2px;
-          margin-bottom: 20px;
-      }
-
-      form {
-          margin-top: 40px;
-      }
-
-      .inputbox {
-          position: relative;
-          margin-bottom: 20px;
-      }
-
-      .inputbox input {
-          height: 50px;
-          width: calc(100% - 30px);
-          outline: none;
-          font-size: 19px;
-          color: #868686;
-          padding: 0 15px;
-          border: 1px solid #444;
-          border-radius: 5px;
-          background: linear-gradient(#333, #222);
-          caret-color: #339933;
-          transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .inputbox input:focus {
-          color: #339933;
-          box-shadow: 0 0 5px rgba(0, 255, 0, .2), inset 0 0 5px rgba(0, 255, 0, .1);
-          background: linear-gradient(#333933, #222922);
-          animation: glow .8s ease-out infinite alternate;
-      }
-
-      @keyframes glow {
-          0% {
-              border-color: #339933;
-              box-shadow: 0 0 5px rgba(0, 255, 0, .2), inset 0 0 5px rgba(0, 0, 0, .1);
-          }
-          100% {
-              border-color: #6f6;
-              box-shadow: 0 0 20px rgba(0, 255, 0, .6), inset 0 0 10px rgba(0, 255, 0, .4);
-          }
-      }
-
-      .inputbox span {
-          position: absolute;
-          top: 10px;
-          left: 20px;
-          color: #999;
-          font-size: 16px;
-          pointer-events: none;
-          transition: 0.3s ease all;
-      }
-
-      .inputbox input:focus + span,
-      .inputbox input:valid + span {
-          top: -20px;
-          color: #339933;
-          font-size: 12px;
-      }
-
-      .inputbox button {
-          position: absolute;
-          top: 50%;
-          right: 10px;
-          transform: translateY(-50%);
-          border: none;
-          background-color: transparent;
-          cursor: pointer;
-          font-size: 14px;
-      }
-
-      .sub {
-          height: 50px;
-          width: 190px;
-          outline: none;
-          font-size: 19px;
-          color: #868686;
-          padding: 0 15px;
-          border-radius: 5px;
-          border: 1px solid #444;
-          background: linear-gradient(#333, #222);
-          caret-color: #339933;
-          cursor: pointer;
-          transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .sub:hover {
-          color: #339933;
-          border: 1px solid #339933;
-          box-shadow: 0 0 5px rgba(0, 255, 0, .3), 0 0 10px rgba(0, 255, 0, .2), 0 0 15px rgba(0, 255, 0, .1), 0 2px 0 black;
-      }
-
-      .link {
-          margin-top: 25px;
-          color: #868686;
-      }
-
-      .link a {
-          color: #339933;
-          text-decoration: none;
-      }
-
-      .link a:hover {
-          text-decoration: underline;
-      }
-
-      /* Modal Styles */
-      .modal {
-          display: none;
-          position: fixed;
-          z-index: 1;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          overflow: auto;
-          background-color: rgba(0, 0, 0, 0.6);
-      }
-
-      .modal-content {
-          background-color: #1b1b1b;
-          margin: 15% auto;
-          padding: 20px;
-          border: 1px solid #444;
-          width: 80%;
-          max-width: 400px;
-          text-align: center;
-          border-radius: 5px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      }
-
-      .modal-content h2 {
-          margin: 0 0 15px;
-          color: #c7c7c7;
-      }
-
-      .modal-content p {
-          margin: 10px 0;
-          color: #868686;
-      }
-
-      .modal-content button {
-          background-color: #339933;
-          color: #ffffff;
-          border: none;
-          padding: 10px 20px;
-          cursor: pointer;
-          border-radius: 5px;
-          font-size: 16px;
-          transition: background-color 0.3s ease;
-      }
-
-      .modal-content button:hover {
-          background-color: #2a8c29;
-      }
-
-      .not-yet {
-        color: #fff;
-        padding: 10px;
-      }
+        font-family: 'Helvetica', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+        margin: 0;
+    }
+    
+    .box {
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 100%;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .box:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+    
+    .form h2 {
+        margin: 0 0 20px;
+        font-size: 26px;
+        color: #333;
+        text-align: center;
+    }
+    
+    .inputbox {
+        position: relative;
+        margin: 30px 0;
+    }
+    
+    .inputbox input {
+        width: 100%;
+        padding: 15px;
+        background: #e6e6e6;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        color: #333;
+        outline: none;
+        transition: background 0.3s ease;
+    }
+    
+    .inputbox input:focus {
+        background: #fff;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .inputbox span {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 18px;
+        color: #999;
+        transition: all 0.3s;
+        pointer-events: none;
+    }
+    
+    .inputbox input:focus + span,
+    .inputbox input:not(:placeholder-shown) + span {
+        top: -10px;
+        left: 15px;
+        font-size: 14px;
+        color: #333;
+    }
+    
+    .sub {
+        width: 100%;
+        padding: 15px;
+        background: #ff7e5f;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .sub:hover {
+        background: #feb47b;
+    }
+    
+    .not-yet {
+        text-align: center;
+        margin: 20px 0 0;
+        font-size: 14px;
+    }
+    
+    .not-yet a {
+        color: #ff7e5f;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    
+    .not-yet a:hover {
+        color: #feb47b;
+    }
+    
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .modal-content {
+        background: white;
+        margin: 15% auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 500px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+    
+    .modal-content h2 {
+        margin-top: 0;
+    }
+    
+    button {
+        background: #ff7e5f;
+        border: none;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    
+    button:hover {
+        background: #feb47b;
+    }
+    
+    @media (max-width: 768px) {
+        .box {
+            padding: 20px;
+        }
+    
+        .modal-content {
+            margin: 20% auto;
+            width: 90%;
+        }
+    }
+    
+    
     </style>
 </head>
 <body>
@@ -249,7 +216,6 @@
                 <p>Please try again or sign up.</p>
                 <button id="tryAgainButton">Try Again</button>
                 <button id="signupButton">Sign up</button>
-                <p>Contact TeleTech Hub now! <a href="https://t.me/teletech_hub?start=Hello!%20Please%20I%20can't%20log-into%20my%20account">⚡Click Here!</a>.</p>
             </div>
         </div>
 

@@ -5,7 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acess Denied!</title>
     <style>
-        /* Modal Styles */
+        body {
+            font-family: 'Helvetica', sans-serif;
+            background: linear-gradient(120deg, #f6d365, #fda085);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
         .modal {
             display: none; /* Hidden by default */
             position: fixed;
@@ -18,95 +28,101 @@
             background-color: rgba(0, 0, 0, 0.7); /* Darker background for contrast */
             padding-top: 60px;
         }
-
+        
         .modal-content {
-            background-color: #ffffff; /* White background for modal content */
-            margin: 10% auto; /* Centering the modal with some margin */
+            background-color: #fff; /* White background for modal content */
+            margin: 5% auto; /* Centering the modal with some margin */
             padding: 20px;
-            border-radius: 8px; /* Rounded corners for a modern look */
+            border-radius: 10px; /* Rounded corners for a modern look */
             border: 1px solid #ddd; /* Light border color */
             width: 90%;
             max-width: 400px; /* Max-width for large screens */
             text-align: center;
             position: relative; /* Needed for positioning the close button */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+            animation: fadeIn 0.5s ease-in-out; /* Fade-in effect */
         }
-
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
         .close-button {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            color: #000000;
+            top: 10px;
+            right: 10px;
+            color: #333;
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
             transition: color 0.3s ease; /* Smooth color transition */
         }
-
+        
         .close-button:hover,
         .close-button:focus {
             color: #007bff; /* Blue color on hover/focus for visibility */
-            text-decoration: none;
         }
-
+        
         .modal-button {
             background-color: #007bff; /* Primary blue color */
             color: white;
-            padding: 12px 24px;
+            padding: 15px 30px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             margin: 10px;
-            font-size: 16px;
-            transition: background-color 0.3s ease; /* Smooth background color transition */
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth background color and scale transition */
         }
-
+        
         .modal-button:hover {
             background-color: #0056b3; /* Darker blue on hover */
+            transform: scale(1.05); /* Slightly enlarge the button on hover */
         }
-
+        
         h2 {
-            margin: 0;
-            padding-bottom: 15px;
-            font-size: 22px;
-            color: #000000; /* Black color for heading */
+            margin: 0 0 20px;
+            padding-bottom: 10px;
+            font-size: 24px;
+            color: #333; /* Dark color for heading */
         }
-
+        
         p {
             margin: 15px 0;
-            font-size: 16px;
-            color: #333333; /* Dark gray color for text */
+            font-size: 18px;
+            color: #555; /* Medium gray color for text */
         }
-
+        
         /* Responsive Styles */
         @media (max-width: 600px) {
             .modal-content {
                 width: 95%; /* Make modal slightly larger on smaller screens */
-                padding: 85px 3px;
+                padding: 20px;
             }
-
+        
             .modal-button {
                 padding: 10px 20px; /* Adjust button size for smaller screens */
-                font-size: 15px;
+                font-size: 16px;
                 margin: 5px;
             }
-
+        
             .close-button {
-                color: red;
                 top: 10px;
                 right: 10px;
-                font-size: 54px; /* Smaller close button on small screens */
+                font-size: 24px; /* Smaller close button on small screens */
             }
-
+        
             h2 {
-                font-size: 25px; /* Adjust heading size */
-                color: red;
+                font-size: 22px; /* Adjust heading size */
             }
-
+        
             p {
-                font-size: 18px; /* Adjust paragraph size */
+                font-size: 16px; /* Adjust paragraph size */
             }
         }
+        
+
     </style>
 </head>
 <body>

@@ -7,342 +7,323 @@
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTTXAB0EaipCcBqM3bR+14+1+qmc0z1B2fFJvFf0ueM2VajcXc9R1eCyp8ZKjLrAOKs1QkC1Yw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #141e30; /* Dark background */
-    background: linear-gradient(to right, #141e30, #243b55); /* Appealing gradient */
-    margin: 0;
-    padding: 0;
-    color: #ffffff; /* White text for contrast */
-}
-
-.form-container {
-    width: 90%;
-    max-width: 600px;
-    margin: 30px auto;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.8); /* Dark transparent background */
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Deeper shadow for more depth */
-    display: none; /* All forms hidden by default */
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transitions */
-}
-
-.active {
-    display: block; /* Show active form */
-    opacity: 1;
-    transform: translateY(0); /* Smooth transition */
-}
-
-.top-bar {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.top-bar i {
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-h3 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #04aa6d; /* Bright color for headings */
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input[type="email"],
-input[type="number"],
-select {
-    width: 95%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #555;
-    background-color: #1c2b3a; /* Dark input background */
-    color: #b1c4d6; /* Light text color */
-}
-
-input[type="email"]::placeholder,
-input[type="number"]::placeholder {
-    color: #b1c4d6; /* Lighter color for placeholders */
-}
-
-.balance-container,
-.info-message {
-    background-color: #243b55;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #04aa6d; /* Highlight balance section with brighter color */
-}
-
-.balance-container h4 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.deposit-now {
-    margin-bottom: 15px;
-}
-
-.payment-method {
-    margin-bottom: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    color: #b1c4d6; /* Lighter text in table */
-}
-
-table td {
-    padding: 10px;
-    border-bottom: 1px solid #555; /* Darker border for a more appealing look */
-}
-
-table tr:last-child td {
-    border-bottom: none;
-}
-
-table td:first-child {
-    text-align: left;
-}
-
-table td:last-child {
-    text-align: right;
-}
-
-.total-row td:last-child {
-    font-weight: bold;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #04aa6d; /* Bright green button */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
-}
-
-button i {
-    margin-left: 10px;
-}
-
-button:hover {
-    background-color: #039f60; /* Darker green on hover */
-}
-
-/* Receipt Styles */
-.receipt-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.receipt-header img {
-    max-width: 150px;
-    height: auto;
-}
-
-.status {
-    background-color: red;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-.receipt-details {
-    margin-bottom: 20px;
-}
-
-.receipt-details p {
-    margin: 5px 0;
-}
-
-.description-table,
-.summary-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.description-table th,
-.description-table td,
-.summary-table th,
-.summary-table td {
-    border: 1px solid #555;
-    padding: 10px;
-    text-align: center;
-}
-
-.summary-table td:first-child {
-    text-align: left;
-}
-
-.summary-table .grand-total {
-    font-weight: bold;
-    color: #04aa6d; /* Highlight grand total */
-}
-
-.warning-message {
-    background-color: #ffeeba;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #856404;
-}
-
-.net111 {
-    background-color: #0000FF;
-}
-
-/* Payment Forms Styles */
-.payment-details {
-    margin-bottom: 20px;
-}
-
-.payment-details p {
-    margin: 10px 0;
-}
-
-.copyable {
-    border-radius: 20px;
-    font-size: 30px;
-    background-color: #008000;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.copyable span {
-    margin-right: 10px;
-    word-break: break-all;
-}
-
-.copyable i {
-    cursor: pointer;
-    color: #04aa6d;
-}
-
-.spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #04aa6d; /* Match spinner to theme */
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    animation: spin 2s linear infinite;
-    display: inline-block;
-    margin-left: 10px;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.change-payment {
-    color: #FF0000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.change-payment:hover {
-    text-decoration: underline;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-    .form-container {
-        width: 95%;
-    }
-}
-
-/* Responsive for smaller screens */
-@media (max-width: 600px) {
-    body {
-        font-size: 14px; /* Slightly smaller text for smaller screens */
-    }
-
-    .form-container {
-        width: 90%;
-        padding: 15px; /* Reduce padding for better fit */
-        border-radius: 8px; /* Slightly smaller border radius */
-        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Lighter shadow */
-    }
-
-    .top-bar {
-        flex-direction: column; /* Stack items vertically on small screens */
-        align-items: flex-start;
-    }
-
-    .top-bar i {
-        margin-bottom: 10px; /* Space between icons */
-    }
-
-    input[type="email"],
-    input[type="number"],
-    select {
-        padding: 8px; /* Slightly smaller padding */
-    }
-
-    button {
-        padding: 10px; /* Adjust padding for smaller screens */
-        font-size: 14px; /* Smaller font size */
-    }
-
-    .receipt-header img {
-        max-width: 120px; /* Smaller image on phones */
-    }
-
-    table td {
-        padding: 8px; /* Reduce padding in tables */
-    }
-
-    .spinner {
-        width: 20px; /* Smaller spinner */
-        height: 20px;
-    }
-
-    /* Additional adjustments for readability and space */
-    .balance-container,
-    .info-message,
-    .warning-message {
-        padding: 10px;
-        font-size: 14px;
-    }
-
-    .copyable span {
-        font-size: 22px; /* Smaller text in copyable items */
-    }
-
-    .copyable i {
-        font-size: 16px; /* Smaller icon size */
-    }
-}
-
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0c274e; /* Dark blue background */
+            background: linear-gradient(to right, #0c274e, #3a6186); /* Smooth light blue gradient */
+            margin: 0;
+            padding: 0;
+            color: #f0f8ff; /* Light blue text for contrast */
+        }
+        
+        .form-container {
+            width: 90%;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: rgba(12, 39, 78, 0.85); /* Transparent blue background */
+            border-radius: 10px;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.6); /* Darker shadow for more depth */
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .top-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .top-bar i {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1e90ff; /* Brighter blue for headings */
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="email"],
+        input[type="number"],
+        select {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #2a4667; /* Darker blue input background */
+            color: #c0d4e3; /* Light text color */
+        }
+        
+        input[type="email"]::placeholder,
+        input[type="number"]::placeholder {
+            color: #c0d4e3; /* Lighter color for placeholders */
+        }
+        
+        .balance-container,
+        .info-message {
+            background-color: #3a6186; /* Lighter blue balance section */
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1e90ff; /* Highlight balance section */
+        }
+        
+        .balance-container h4 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .deposit-now {
+            margin-bottom: 15px;
+        }
+        
+        .payment-method {
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            color: #c0d4e3; /* Lighter text in table */
+        }
+        
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #555;
+        }
+        
+        table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        table td:first-child {
+            text-align: left;
+        }
+        
+        table td:last-child {
+            text-align: right;
+        }
+        
+        .total-row td:last-child {
+            font-weight: bold;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1e90ff; /* Bright blue button */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        button i {
+            margin-left: 10px;
+        }
+        
+        button:hover {
+            background-color: #1c86ee; /* Darker blue on hover */
+        }
+        
+        /* Receipt Styles */
+        .receipt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .receipt-header img {
+            max-width: 150px;
+            height: auto;
+        }
+        
+        .status {
+            background-color: #ff6347; /* Tomato red for alert */
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .receipt-details {
+            margin-bottom: 20px;
+        }
+        
+        .receipt-details p {
+            margin: 5px 0;
+        }
+        
+        .description-table,
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .description-table th,
+        .description-table td,
+        .summary-table th,
+        .summary-table td {
+            border: 1px solid #555;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .summary-table td:first-child {
+            text-align: left;
+        }
+        
+        .summary-table .grand-total {
+            font-weight: bold;
+            color: #1e90ff; /* Highlight grand total */
+        }
+        
+        .warning-message {
+            background-color: #ffeb99; /* Softer yellow for warnings */
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #856404;
+        }
+        
+        .net111 {
+            background-color: #00bfff; /* Deep sky blue */
+        }
+        
+        /* Payment Forms Styles */
+        .payment-details {
+            margin-bottom: 20px;
+        }
+        
+        .payment-details p {
+            margin: 10px 0;
+        }
+        
+        .copyable {
+            border-radius: 20px;
+            font-size: 30px;
+            background-color: #1e90ff; /* Bright blue */
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .copyable span {
+            margin-right: 10px;
+            word-break: break-all;
+        }
+        
+        .copyable i {
+            cursor: pointer;
+            color: #fff;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1e90ff; /* Match spinner to theme */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 2s linear infinite;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .change-payment {
+            color: #ff4500; /* Orange-red for payment links */
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .change-payment:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .form-container {
+                width: 95%;
+            }
+        
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        
+            input[type="email"],
+            input[type="number"],
+            select {
+                padding: 8px;
+            }
+        
+            button {
+                padding: 10px;
+                font-size: 14px;
+            }
+        
+            .receipt-header img {
+                max-width: 120px;
+            }
+        
+            table td {
+                padding: 8px;
+            }
+        
+            .spinner {
+                width: 20px;
+                height: 20px;
+            }
+        
+            .balance-container,
+            .info-message,
+            .warning-message {
+                padding: 10px;
+                font-size: 14px;
+            }
+        
+            .copyable span {
+                font-size: 22px;
+            }
+        
+            .copyable i {
+                font-size: 16px;
+            }
+        }
+        
     </style>
 </head>
 <body>
@@ -569,7 +550,7 @@ button:hover {
             </h4>
         </div>
         <div class="copyable">
-            <span id="usdt-wallet">TLNEJmdL1rCKbECUhGxVbEChedV6o68eFU</span>
+            <span id="usdt-wallet">TBDiVRALL5ajjzsgNKufsDtxanrJAahhxv</span>
             <i class="fas fa-copy" onclick="copyText('usdt-wallet')"></i>
         </div>
         <p>Click on the ID above to copy.</p>
@@ -615,7 +596,7 @@ button:hover {
             </h4>
         </div>
         <div class="copyable">
-            <span id="skrill-email">unlockmyapple3@gmail.com</span>
+            <span id="skrill-email">adkinsbaldwin@gmail.com</span>
             <i class="fas fa-copy" onclick="copyText('skrill-email')"></i>
         </div>
         <p>Click on the ID above to copy.</p>
